@@ -147,7 +147,7 @@
         console.log("Home Page");
         $("#AboutUsButton").on("click", () => 
         {
-            location.href = "/about";
+            LoadLink("about");
         });
 
         $("main").append(`<p id="MainParagraph" class="mt-3">This is the Main Paragraph</p>`);
@@ -292,11 +292,6 @@
 
             contactList.innerHTML = data;
 
-            $("#addButton").on("click",() =>
-            {
-                LoadLink("edit", "add");
-            });
-
             $("button.delete").on("click", function()
             {
                 if(confirm("Are you sure?"))
@@ -313,6 +308,11 @@
                 LoadLink("edit", $(this).val() as string)
             });
         }
+
+        $("#addButton").on("click",() =>
+        {
+            LoadLink("edit", "add");
+        });
     }
 
     function DisplayEditPage()
@@ -408,6 +408,8 @@
                 $("#login").html(
                     `<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`
                 );
+
+                AddNavigationEvents();
                 
                 // redirect back to login page
                 LoadLink("login");

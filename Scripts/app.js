@@ -10,7 +10,6 @@
             }
         }
     }
-    //this is for testing thats all
     function LoadLink(link, data = "") {
         router.ActiveLink = link;
         AuthGuard();
@@ -77,7 +76,7 @@
     function DisplayHome() {
         console.log("Home Page");
         $("#AboutUsButton").on("click", () => {
-            location.href = "/about";
+            LoadLink("about");
         });
         $("main").append(`<p id="MainParagraph" class="mt-3">This is the Main Paragraph</p>`);
         $("main").append(`
@@ -160,9 +159,6 @@
                 index++;
             }
             contactList.innerHTML = data;
-            $("#addButton").on("click", () => {
-                LoadLink("edit", "add");
-            });
             $("button.delete").on("click", function () {
                 if (confirm("Are you sure?")) {
                     localStorage.removeItem($(this).val());
@@ -173,6 +169,9 @@
                 LoadLink("edit", $(this).val());
             });
         }
+        $("#addButton").on("click", () => {
+            LoadLink("edit", "add");
+        });
     }
     function DisplayEditPage() {
         console.log("Edit Page");
@@ -224,6 +223,7 @@
             $("#logout").on("click", function () {
                 sessionStorage.clear();
                 $("#login").html(`<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`);
+                AddNavigationEvents();
                 LoadLink("login");
             });
         }
