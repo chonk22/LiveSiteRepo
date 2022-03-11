@@ -10,6 +10,7 @@
             }
         }
     }
+    //this is for testing thats all
     function LoadLink(link, data = "") {
         router.ActiveLink = link;
         AuthGuard();
